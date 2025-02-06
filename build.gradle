@@ -12,17 +12,20 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-    maven { url "https://jitpack.io" }
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     namespace "com.stericson.RootTools"
@@ -46,4 +49,8 @@ android {
 }
 
 dependencies {
+}
+
+tasks.withType(Javadoc).configureEach {
+    enabled = false // <--- https://github.com/novoda/bintray-release/issues/71
 }
