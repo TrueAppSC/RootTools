@@ -54,3 +54,17 @@ dependencies {
 tasks.withType(Javadoc).configureEach {
     enabled = false // <--- https://github.com/novoda/bintray-release/issues/71
 }
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            aar(MavenPublication) {
+                groupId = 'com.github.TrueAppSC'
+                artifactId = 'RootTools'
+                version = '1.0.0'
+
+                artifact bundleReleaseAar
+            }
+        }
+    }
+}
